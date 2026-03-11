@@ -1,0 +1,174 @@
+:root {
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  color: #f5f7ff;
+  background: #101528;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #1f2f5f 0%, #101528 55%);
+  min-height: 100vh;
+}
+
+.app-shell {
+  max-width: 560px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 1rem 1rem 5.5rem;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.subtitle {
+  margin: 0.25rem 0 1rem;
+  color: #b9c2eb;
+}
+
+.stack {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.card {
+  background: #172143;
+  border: 1px solid #2a3b7f;
+  border-radius: 0.9rem;
+  padding: 0.9rem;
+}
+
+.card h2,
+.card h3 {
+  margin: 0 0 0.4rem;
+}
+
+.card p,
+.card ul {
+  margin: 0;
+}
+
+.primary {
+  border-color: #4d72ff;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.stat {
+  background: #172143;
+  border: 1px solid #2a3b7f;
+  border-radius: 0.75rem;
+  padding: 0.7rem;
+}
+
+.stat span {
+  font-size: 0.8rem;
+  color: #b9c2eb;
+}
+
+.stat strong {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 1.1rem;
+}
+
+.exercise-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+
+.exercise-header span,
+.muted {
+  color: #b9c2eb;
+  font-size: 0.86rem;
+}
+
+.action,
+.secondary,
+.tab {
+  border: 0;
+  border-radius: 0.75rem;
+  padding: 0.65rem 0.85rem;
+  font-weight: 600;
+}
+
+.action {
+  margin-top: 0.7rem;
+  width: 100%;
+  background: #5d7cff;
+  color: #fff;
+}
+
+.action:disabled {
+  opacity: 0.55;
+}
+
+.secondary {
+  width: 100%;
+  background: #2a3b7f;
+  color: #e3e8ff;
+}
+
+.history-list {
+  list-style: none;
+  padding-left: 0;
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 0.6rem;
+}
+
+.history-list li {
+  background: #101a37;
+  border-radius: 0.7rem;
+  padding: 0.6rem;
+  display: grid;
+  gap: 0.2rem;
+}
+
+.history-list span {
+  font-size: 0.75rem;
+  color: #a4afd9;
+}
+
+.tab-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #0e1530;
+  border-top: 1px solid #2a3b7f;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.tab {
+  border-radius: 0;
+  padding: 0.8rem 0.3rem;
+  background: transparent;
+  color: #b9c2eb;
+}
+
+.tab.active {
+  color: #fff;
+  background: #1a2858;
+}
+
+@media (min-width: 600px) {
+  .app-shell {
+    border-left: 1px solid #2a3b7f;
+    border-right: 1px solid #2a3b7f;
+  }
+}
