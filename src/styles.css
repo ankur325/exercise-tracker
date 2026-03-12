@@ -130,7 +130,7 @@ h1 {
 }
 
 .exercise-animation {
-  height: 56px;
+  height: 68px;
   border-radius: 0.8rem;
   position: relative;
   overflow: hidden;
@@ -138,121 +138,224 @@ h1 {
   background: rgba(8, 14, 36, 0.85);
 }
 
-.stick-figure {
+.anim-rig {
   position: absolute;
-  left: 20%;
-  top: 58%;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  border: 2px solid #dbe5ff;
-  transform-origin: center 24px;
+  inset: 0;
 }
 
-.stick-figure::before {
-  content: '';
+.limb {
   position: absolute;
-  left: 5px;
-  top: 14px;
-  width: 2px;
-  height: 18px;
   background: #dbe5ff;
+  border-radius: 999px;
 }
 
-.bar {
+.head {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  top: 18px;
+  left: 28%;
+}
+
+.torso {
+  width: 4px;
+  height: 20px;
+  top: 28px;
+  left: calc(28% + 4px);
+}
+
+.arm {
+  width: 16px;
+  height: 3px;
+  top: 32px;
+}
+
+.arm-left {
+  left: calc(28% - 8px);
+}
+
+.arm-right {
+  left: calc(28% + 6px);
+}
+
+.leg {
+  width: 3px;
+  height: 16px;
+  top: 46px;
+}
+
+.leg-left {
+  left: calc(28% + 1px);
+}
+
+.leg-right {
+  left: calc(28% + 7px);
+}
+
+.barbell {
   position: absolute;
-  left: 18%;
-  top: 60%;
-  width: 40%;
+  width: 42%;
   height: 5px;
   border-radius: 999px;
+  left: 18%;
+  top: 30px;
   background: #7da3ff;
   box-shadow: 0 0 12px rgba(126, 163, 255, 0.75);
 }
 
-.exercise-animation.push .bar {
-  animation: pressMove 1.5s ease-in-out infinite;
+/* Upper-body exercise-specific animations */
+.exercise-animation.bench-press .barbell {
+  animation: benchPressBar 1.5s ease-in-out infinite;
 }
 
-.exercise-animation.push .stick-figure {
-  animation: torsoLean 1.5s ease-in-out infinite;
+.exercise-animation.bench-press .torso,
+.exercise-animation.seated-shoulder-press .torso {
+  animation: torsoPulse 1.5s ease-in-out infinite;
 }
 
-.exercise-animation.pull .bar {
-  animation: pullMove 1.4s ease-in-out infinite;
+.exercise-animation.one-arm-dumbbell-row .barbell {
+  width: 16%;
+  left: 40%;
+  animation: rowPull 1.4s ease-in-out infinite;
 }
 
-.exercise-animation.pull .stick-figure {
-  animation: torsoLeanReverse 1.4s ease-in-out infinite;
+.exercise-animation.one-arm-dumbbell-row .arm-right {
+  width: 18px;
+  left: 34%;
+  animation: rowArm 1.4s ease-in-out infinite;
 }
 
-.exercise-animation.legs .bar {
-  top: 34%;
+.exercise-animation.seated-shoulder-press .barbell {
+  width: 28%;
+  left: 24%;
+  animation: shoulderPressBar 1.5s ease-in-out infinite;
+}
+
+.exercise-animation.lat-pulldown .barbell {
+  width: 54%;
+  left: 12%;
+  top: 12px;
+  animation: pullDownBar 1.5s ease-in-out infinite;
+}
+
+/* Lower-body exercise-specific animations */
+.exercise-animation.back-squat .barbell {
+  top: 20px;
   animation: squatBar 1.7s ease-in-out infinite;
 }
 
-.exercise-animation.legs .stick-figure {
+.exercise-animation.back-squat .head,
+.exercise-animation.back-squat .torso,
+.exercise-animation.back-squat .leg {
   animation: squatBody 1.7s ease-in-out infinite;
 }
 
-@keyframes pressMove {
-  0%,
-  100% {
-    transform: translateY(8px);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
+.exercise-animation.romanian-deadlift .barbell {
+  top: 40px;
+  animation: rdlBar 1.6s ease-in-out infinite;
 }
 
-@keyframes pullMove {
+.exercise-animation.romanian-deadlift .torso {
+  transform-origin: top center;
+  animation: rdlTorso 1.6s ease-in-out infinite;
+}
+
+.exercise-animation.walking-lunges .head,
+.exercise-animation.walking-lunges .torso,
+.exercise-animation.walking-lunges .leg-left,
+.exercise-animation.walking-lunges .leg-right {
+  animation: lungeStride 1.4s ease-in-out infinite;
+}
+
+.exercise-animation.walking-lunges .barbell {
+  width: 22%;
+  left: 34%;
+  animation: lungeDumbbells 1.4s ease-in-out infinite;
+}
+
+.exercise-animation.calf-raise .head,
+.exercise-animation.calf-raise .torso,
+.exercise-animation.calf-raise .arm,
+.exercise-animation.calf-raise .barbell {
+  animation: calfRise 1.3s ease-in-out infinite;
+}
+
+@keyframes benchPressBar {
   0%,
-  100% {
-    transform: translateX(2px);
-  }
-  50% {
-    transform: translateX(18px);
-  }
+  100% { transform: translateY(8px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes torsoPulse {
+  0%,
+  100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+@keyframes rowPull {
+  0%,
+  100% { transform: translateX(0); }
+  50% { transform: translateX(14px) translateY(-4px); }
+}
+
+@keyframes rowArm {
+  0%,
+  100% { transform: rotate(10deg); }
+  50% { transform: rotate(-20deg); }
+}
+
+@keyframes shoulderPressBar {
+  0%,
+  100% { transform: translateY(18px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pullDownBar {
+  0%,
+  100% { transform: translateY(0); }
+  50% { transform: translateY(18px); }
 }
 
 @keyframes squatBar {
   0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(16px);
-  }
-}
-
-@keyframes torsoLean {
-  0%,
-  100% {
-    transform: rotate(7deg);
-  }
-  50% {
-    transform: rotate(-5deg);
-  }
-}
-
-@keyframes torsoLeanReverse {
-  0%,
-  100% {
-    transform: rotate(-7deg);
-  }
-  50% {
-    transform: rotate(6deg);
-  }
+  100% { transform: translateY(0); }
+  50% { transform: translateY(12px); }
 }
 
 @keyframes squatBody {
   0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(14px);
-  }
+  100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+@keyframes rdlBar {
+  0%,
+  100% { transform: translateY(-8px); }
+  50% { transform: translateY(10px); }
+}
+
+@keyframes rdlTorso {
+  0%,
+  100% { transform: rotate(8deg); }
+  50% { transform: rotate(28deg); }
+}
+
+@keyframes lungeStride {
+  0%,
+  100% { transform: translateX(0); }
+  50% { transform: translateX(7px); }
+}
+
+@keyframes lungeDumbbells {
+  0%,
+  100% { transform: translateX(0); }
+  50% { transform: translateX(7px) translateY(4px); }
+}
+
+@keyframes calfRise {
+  0%,
+  100% { transform: translateY(4px); }
+  50% { transform: translateY(-6px); }
 }
 
 .action,

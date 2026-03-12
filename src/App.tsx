@@ -292,7 +292,7 @@ function SessionTab({ plan, logs, onLogSet, onSwitchTab }: SessionTabProps) {
 
         return (
           <article className="card exercise-card" key={exercise.name}>
-            <ExerciseAnimation kind={exercise.kind} />
+            <ExerciseAnimation exerciseName={exercise.name} />
             <div>
               <div className="exercise-header">
                 <h3>{exercise.name}</h3>
@@ -326,13 +326,23 @@ function SessionTab({ plan, logs, onLogSet, onSwitchTab }: SessionTabProps) {
   );
 }
 
-function ExerciseAnimation({ kind }: { kind: ExerciseKind }) {
-  const label = kind === 'push' ? 'Pressing animation' : kind === 'pull' ? 'Pulling animation' : 'Squat animation';
+function ExerciseAnimation({ exerciseName }: { exerciseName: string }) {
+  const animationClass = exerciseName
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
 
   return (
-    <div className={`exercise-animation ${kind}`} aria-label={label}>
-      <div className="stick-figure" />
-      <div className="bar" />
+    <div className={`exercise-animation ${animationClass}`} aria-label={`${exerciseName} form animation`}>
+      <div className="anim-rig">
+        <div className="limb head" />
+        <div className="limb torso" />
+        <div className="limb arm arm-left" />
+        <div className="limb arm arm-right" />
+        <div className="limb leg leg-left" />
+        <div className="limb leg leg-right" />
+        <div className="barbell" />
+      </div>
     </div>
   );
 }
