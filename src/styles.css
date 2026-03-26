@@ -1,0 +1,441 @@
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  color: #eaf0ff;
+  background: #070b18;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(83, 124, 255, 0.38), transparent 40%),
+    radial-gradient(circle at 85% 0%, rgba(86, 218, 165, 0.2), transparent 35%),
+    #070b18;
+}
+
+h1,
+h2,
+h3,
+p,
+ul {
+  margin: 0;
+}
+
+ul {
+  padding-left: 1.1rem;
+}
+
+.app-shell {
+  max-width: 560px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 1rem 1rem 5.6rem;
+}
+
+.top {
+  margin-bottom: 0.9rem;
+}
+
+.kicker {
+  color: #8ea6ff;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+h1 {
+  margin-top: 0.2rem;
+  font-size: 1.55rem;
+}
+
+.subtitle {
+  margin-top: 0.35rem;
+  color: #bac7f2;
+  line-height: 1.35;
+}
+
+.stack {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.card {
+  border: 1px solid rgba(126, 153, 255, 0.35);
+  background: linear-gradient(175deg, rgba(19, 30, 63, 0.95), rgba(12, 19, 43, 0.95));
+  border-radius: 1rem;
+  padding: 0.95rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+}
+
+.primary {
+  border-color: rgba(103, 142, 255, 0.65);
+}
+
+.rest {
+  border-color: rgba(104, 212, 175, 0.45);
+  background: linear-gradient(175deg, rgba(19, 49, 58, 0.95), rgba(12, 30, 38, 0.95));
+}
+
+.label {
+  color: #90a8ff;
+  font-size: 0.82rem;
+  margin-bottom: 0.2rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.stat {
+  border-radius: 0.9rem;
+  padding: 0.8rem;
+  border: 1px solid rgba(126, 153, 255, 0.35);
+  background: rgba(12, 18, 40, 0.85);
+}
+
+.stat span {
+  color: #bac7f2;
+  font-size: 0.8rem;
+}
+
+.stat strong {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 1.16rem;
+}
+
+.exercise-card {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.exercise-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+
+.exercise-header span,
+.muted {
+  color: #bac7f2;
+  font-size: 0.86rem;
+}
+
+.exercise-animation {
+  height: 68px;
+  border-radius: 0.8rem;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(165, 186, 255, 0.35);
+  background: rgba(8, 14, 36, 0.85);
+}
+
+.anim-rig {
+  position: absolute;
+  inset: 0;
+}
+
+.limb {
+  position: absolute;
+  background: #dbe5ff;
+  border-radius: 999px;
+}
+
+.head {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  top: 18px;
+  left: 28%;
+}
+
+.torso {
+  width: 4px;
+  height: 20px;
+  top: 28px;
+  left: calc(28% + 4px);
+}
+
+.arm {
+  width: 16px;
+  height: 3px;
+  top: 32px;
+}
+
+.arm-left {
+  left: calc(28% - 8px);
+}
+
+.arm-right {
+  left: calc(28% + 6px);
+}
+
+.leg {
+  width: 3px;
+  height: 16px;
+  top: 46px;
+}
+
+.leg-left {
+  left: calc(28% + 1px);
+}
+
+.leg-right {
+  left: calc(28% + 7px);
+}
+
+.barbell {
+  position: absolute;
+  width: 42%;
+  height: 5px;
+  border-radius: 999px;
+  left: 18%;
+  top: 30px;
+  background: #7da3ff;
+  box-shadow: 0 0 12px rgba(126, 163, 255, 0.75);
+}
+
+/* Upper-body exercise-specific animations */
+.exercise-animation.bench-press .barbell {
+  animation: benchPressBar 1.5s ease-in-out infinite;
+}
+
+.exercise-animation.bench-press .torso,
+.exercise-animation.seated-shoulder-press .torso {
+  animation: torsoPulse 1.5s ease-in-out infinite;
+}
+
+.exercise-animation.one-arm-dumbbell-row .barbell {
+  width: 16%;
+  left: 40%;
+  animation: rowPull 1.4s ease-in-out infinite;
+}
+
+.exercise-animation.one-arm-dumbbell-row .arm-right {
+  width: 18px;
+  left: 34%;
+  animation: rowArm 1.4s ease-in-out infinite;
+}
+
+.exercise-animation.seated-shoulder-press .barbell {
+  width: 28%;
+  left: 24%;
+  animation: shoulderPressBar 1.5s ease-in-out infinite;
+}
+
+.exercise-animation.lat-pulldown .barbell {
+  width: 54%;
+  left: 12%;
+  top: 12px;
+  animation: pullDownBar 1.5s ease-in-out infinite;
+}
+
+/* Lower-body exercise-specific animations */
+.exercise-animation.back-squat .barbell {
+  top: 20px;
+  animation: squatBar 1.7s ease-in-out infinite;
+}
+
+.exercise-animation.back-squat .head,
+.exercise-animation.back-squat .torso,
+.exercise-animation.back-squat .leg {
+  animation: squatBody 1.7s ease-in-out infinite;
+}
+
+.exercise-animation.romanian-deadlift .barbell {
+  top: 40px;
+  animation: rdlBar 1.6s ease-in-out infinite;
+}
+
+.exercise-animation.romanian-deadlift .torso {
+  transform-origin: top center;
+  animation: rdlTorso 1.6s ease-in-out infinite;
+}
+
+.exercise-animation.walking-lunges .head,
+.exercise-animation.walking-lunges .torso,
+.exercise-animation.walking-lunges .leg-left,
+.exercise-animation.walking-lunges .leg-right {
+  animation: lungeStride 1.4s ease-in-out infinite;
+}
+
+.exercise-animation.walking-lunges .barbell {
+  width: 22%;
+  left: 34%;
+  animation: lungeDumbbells 1.4s ease-in-out infinite;
+}
+
+.exercise-animation.calf-raise .head,
+.exercise-animation.calf-raise .torso,
+.exercise-animation.calf-raise .arm,
+.exercise-animation.calf-raise .barbell {
+  animation: calfRise 1.3s ease-in-out infinite;
+}
+
+@keyframes benchPressBar {
+  0%,
+  100% { transform: translateY(8px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes torsoPulse {
+  0%,
+  100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+@keyframes rowPull {
+  0%,
+  100% { transform: translateX(0); }
+  50% { transform: translateX(14px) translateY(-4px); }
+}
+
+@keyframes rowArm {
+  0%,
+  100% { transform: rotate(10deg); }
+  50% { transform: rotate(-20deg); }
+}
+
+@keyframes shoulderPressBar {
+  0%,
+  100% { transform: translateY(18px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pullDownBar {
+  0%,
+  100% { transform: translateY(0); }
+  50% { transform: translateY(18px); }
+}
+
+@keyframes squatBar {
+  0%,
+  100% { transform: translateY(0); }
+  50% { transform: translateY(12px); }
+}
+
+@keyframes squatBody {
+  0%,
+  100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+@keyframes rdlBar {
+  0%,
+  100% { transform: translateY(-8px); }
+  50% { transform: translateY(10px); }
+}
+
+@keyframes rdlTorso {
+  0%,
+  100% { transform: rotate(8deg); }
+  50% { transform: rotate(28deg); }
+}
+
+@keyframes lungeStride {
+  0%,
+  100% { transform: translateX(0); }
+  50% { transform: translateX(7px); }
+}
+
+@keyframes lungeDumbbells {
+  0%,
+  100% { transform: translateX(0); }
+  50% { transform: translateX(7px) translateY(4px); }
+}
+
+@keyframes calfRise {
+  0%,
+  100% { transform: translateY(4px); }
+  50% { transform: translateY(-6px); }
+}
+
+.action,
+.secondary,
+.tab {
+  border: 0;
+  border-radius: 0.8rem;
+  padding: 0.68rem 0.9rem;
+  font-weight: 700;
+}
+
+.action {
+  width: 100%;
+  color: #fff;
+  background: linear-gradient(135deg, #5f84ff, #6a56ff);
+  box-shadow: 0 6px 16px rgba(95, 132, 255, 0.35);
+}
+
+.action:disabled {
+  opacity: 0.45;
+}
+
+.secondary {
+  width: 100%;
+  margin-top: 0.4rem;
+  color: #e9efff;
+  background: rgba(96, 127, 226, 0.28);
+}
+
+.history-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 0.62rem;
+  margin-top: 0.55rem;
+}
+
+.history-list li {
+  border-radius: 0.75rem;
+  padding: 0.62rem;
+  border: 1px solid rgba(126, 153, 255, 0.28);
+  background: rgba(11, 18, 39, 0.88);
+  display: grid;
+  gap: 0.15rem;
+}
+
+.history-list span {
+  font-size: 0.8rem;
+  color: #bac7f2;
+}
+
+.tab-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0 auto;
+  max-width: 560px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid rgba(126, 153, 255, 0.32);
+  background: rgba(7, 11, 24, 0.96);
+  backdrop-filter: blur(8px);
+}
+
+.tab {
+  border-radius: 0;
+  background: transparent;
+  color: #aebdf0;
+  padding: 0.88rem 0.35rem;
+}
+
+.tab.active {
+  color: #f2f6ff;
+  background: rgba(95, 132, 255, 0.18);
+}
+
+@media (min-width: 600px) {
+  .app-shell {
+    border-left: 1px solid rgba(126, 153, 255, 0.25);
+    border-right: 1px solid rgba(126, 153, 255, 0.25);
+  }
+}
